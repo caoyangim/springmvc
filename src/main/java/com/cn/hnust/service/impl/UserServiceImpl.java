@@ -1,0 +1,29 @@
+package com.cn.hnust.service.impl;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.cn.hnust.dao.IUserDao;
+import com.cn.hnust.pojo.User;
+import com.cn.hnust.service.IUserService;
+
+import java.util.List;
+
+@Service("userService")
+public class UserServiceImpl implements IUserService {
+    @Resource
+    private IUserDao userDao;
+
+    public User getUserById(int userId) {
+        return this.userDao.selectByPrimaryKey(userId);
+    }
+
+    public List<User> getUser(){
+        return this.userDao.selectAll();
+    }
+
+    public int insert(User user) {
+        return this.userDao.insert(user);
+    }
+}
